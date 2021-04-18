@@ -100,19 +100,19 @@ public class JoogaController {
 	}
 	
 
-	// RESTful service to get all questions
+	// RESTful kaikki joogat
 	@GetMapping(value = "/api/joogas")
 	public @ResponseBody List<Jooga> joogaListRest() {
 		return (List<Jooga>) jrepository.findAll();
 	}
 
-	// RESTful service jooga by jooga id
+	// RESTful jooga id:n mukaan
 	@GetMapping(value = "/api/jooga/{id}")
 	public @ResponseBody Optional<Jooga> findJoogaRest(@PathVariable("id") Long id) {
 		return jrepository.findById(id);
 	}
 
-	// Get useranswers by answer id
+	// Restful asanat id:n mukaan
 	@GetMapping(value = "/api/asana/{id}")
 	public @ResponseBody Optional<Asana> asanaRest(@PathVariable("id") Long id) {
 		return arepository.findById(id);
