@@ -33,7 +33,7 @@ public class JoogaController {
 	private AsanaRepository arepository;
 	
 	// Hakee kaikki joogat
-	@RequestMapping("/joogalist")
+	@RequestMapping(value = {"/","/joogalist"}) 
 	public String joogaList(Model model) { 
 		model.addAttribute("joogas", jrepository.findAll());
 		return "joogalist";
