@@ -47,12 +47,12 @@ public class JoogaController {
 		return "newjooga";
 	}
 	
-//	// Tallentaa uuden joogan
-//	@RequestMapping(value = "/savejooga", method = RequestMethod.POST)
-//	public String save(Jooga jooga){
-//		jrepository.save(jooga);
-//		return "redirect:joogalist";
-//	}
+	// Tallentaa uuden joogan
+	@RequestMapping(value = "/savejooga", method = RequestMethod.POST)
+	public String save(Jooga jooga){
+		jrepository.save(jooga);
+		return "redirect:joogalist";
+	}
 //	
 //	// Hakee kaikki tiettyyn joogaan kuuluvat asanat
 //	@RequestMapping("/asanas/{id}")
