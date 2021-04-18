@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+
+<head>
+	<title>Asanat</title>
+	<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+</head>
+<body>
+	<h1>Asanat</h1>
+		<div class="col-md-4">
+		</div>
+	
+	<table class="table table-striped">
+		<tbody>
+			
+			<p th:each = "asana : ${jooga.asanas}">
+			<span th:text="${asana.asname}"></span>
+			<span th:text="${jooga.asana.adescription}"></span>
+			</p>
+		</tbody>
+	</table>
+	<a th:href="@{/addasana/{id}(id=${jooga.id})" class="btn btn-success"> Add asana</a>
+</body>
+</html>

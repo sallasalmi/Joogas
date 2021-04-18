@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+
+<head>
+	<title>Reviewlist</title>
+	<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+</head>
+<body>
+	<h1>Reviews</h1>
+	<table class="table table-striped">
+		<tbody>
+			<tr th:each = "review : ${reviews}">
+			<td th:text="${review.name}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/newreview" class="btn btn-success"> New review</a>
+</body>
+</html>

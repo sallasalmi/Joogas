@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<head>
+	<title>Joogalist</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+</head>
+<body>
+	<h2>New jooga</h2>
+	<div>
+	<form th:object="${jooga}" th:action="@{save}" action="#" method="post">
+		<label for="name">Name</label>
+	<input type="text" id="name" th:field="*{name}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="description">Description</label>
+	<input type="text" id="description" th:field="*{description}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="time">Time</label>
+	<input type="text" id="time" th:field="*{time}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+	<label for="reviewlist">Review</label>
+		<select id="reviewlist" th:field="*{review}" class="form-control">
+       	<option th:each="review: ${reviews}" th:value="${review.reviewid}" th:text="${review.name}"></option>
+    	</select>
+    	<input type="submit" value="Save"></input>
+	</form>
+	</div>
+	
+</body>
+</html>
