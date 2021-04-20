@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -94,6 +95,7 @@ public class JoogaController {
 	}
 	
 	// kaikki asanat
+	@CrossOrigin
 	@GetMapping(value = "/api/asanas")
 	public @ResponseBody List<Asana> getAllAsanas() {
 		return (List<Asana>) arepository.findAll();
@@ -101,18 +103,21 @@ public class JoogaController {
 	
 
 	// RESTful kaikki joogat
+	@CrossOrigin
 	@GetMapping(value = "/api/joogas")
 	public @ResponseBody List<Jooga> joogaListRest() {
 		return (List<Jooga>) jrepository.findAll();
 	}
 
 	// RESTful jooga id:n mukaan
+	@CrossOrigin
 	@GetMapping(value = "/api/jooga/{id}")
 	public @ResponseBody Optional<Jooga> findJoogaRest(@PathVariable("id") Long id) {
 		return jrepository.findById(id);
 	}
 
 	// Restful asanat id:n mukaan
+	@CrossOrigin
 	@GetMapping(value = "/api/asana/{id}")
 	public @ResponseBody Optional<Asana> asanaRest(@PathVariable("id") Long id) {
 		return arepository.findById(id);
