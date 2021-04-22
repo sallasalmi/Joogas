@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<head>
+	<title>Asanas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+</head>
+<body>
+	<h2>New asana</h2>
+	<div>
+	<form th:object="${asana}" th:action="@{saveasana}" action="#" method="post">
+		<label for="asname">Name</label>
+	<input type="text" id="asname" th:field="*{asname}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="adescription">Description</label>
+	<input type="text" id="adescription" th:field="*{adescription}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+	<label for="joogalist">Review</label>
+		<select id="joogalist" th:field="*{jooga}" class="form-control">
+       	<option th:each="jooga: ${joogas}" th:value="${jooga.id}" th:text="${jooga.name}"></option>
+    	</select>
+	
+    	<input type="submit" value="Save"></input>
+	</form>
+	</div>
+	
+</body>
+</html>

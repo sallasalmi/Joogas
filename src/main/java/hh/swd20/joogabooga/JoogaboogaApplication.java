@@ -51,16 +51,22 @@ public class JoogaboogaApplication {
 			vrepository.save(r1);
 			Review r2 = new Review("Rentouttava"); 
 			vrepository.save(r2);
-			Review r3 = new Review("Urheilullinen"); 
+			Review r3 = new Review("Kehitettävää"); 
 			vrepository.save(r3);
 			
-			jrepository.save(new Jooga("Hotjooga", "Kuumaa", "20min",r1));
-			jrepository.save(new Jooga("Kundaliinijooga", "Keskittymistä hengitykseen ja hauskoja ääniä", "60min",r2));
-			jrepository.save(new Jooga("Yinjooga", "Oikein mukavaa", "30min",r3));
+			jrepository.save(new Jooga("Hotjooga", "Puhdistava", "20min",r1));
+			jrepository.save(new Jooga("Kundaliinijooga", "Syvää eskittymistä hengitykseen", "60min",r2));
+			jrepository.save(new Jooga("Yinjooga", "Rentouttava", "30min",r3));
 			
-			arepository.save(new Asana("Venyttelevä koira", "Venyttele kuin koira", jrepository.findByName("Hotjooga").get(0)));
-			arepository.save(new Asana("aurinko", "Venyttele kuin koira", jrepository.findByName("Kundaliinijooga").get(0)));
-			arepository.save(new Asana("kuu", "Venyttele kuin koira", jrepository.findByName("Yinjooga").get(0)));
+			arepository.save(new Asana("Vuoriasento", "Seiso suorassa kädet sivuilla ja anna painon levätä tasaisesti koko jalkapohjilla.", jrepository.findByName("Hotjooga").get(0)));
+			arepository.save(new Asana("Alaspäin katsova koira", "Aloita konttausasennosta, levitä sormet ja juurruta kämmenet alustaa vasten."
+					+ "Rauhallisesti hengittäen lähde nostamaan polvia hitaasti irti alustasta työntäen samalla lantiota ylös, kunnes jalat alkavat suoristua", jrepository.findByName("Hotjooga").get(0)));
+			arepository.save(new Asana("Puuasento", "Nosta vasen jalka ja ota vasemmalla kädellä nilkasta kiinni."
+					+ " Tarkoituksena on nostaa vasemman jalan jalkapohja tukijalan sisäsyrjää vasten, joko pohkeen korkeudelle tai aivan ylös reiden sisäsyrjää vasten oman tason mukaan.", jrepository.findByName("Kundaliinijooga").get(0)));
+			arepository.save(new Asana("Kobra", "Makaa lattialla mahalteen ja aseta kämmenet lattiaa vasten rintakehän viereen. Ala nostamaan päätä ylöspäin rintakehää venyttäen.", jrepository.findByName("Kundaliinijooga").get(0)));
+			arepository.save(new Asana("kolmio", "Aloita vuoriasennosta ja harppaa vasen jalka taakse. Laske oikea käsi lattiaan ja vasemmalla kädellä kurkoita kohti kattoa", jrepository.findByName("Yinjooga").get(0)));
+			arepository.save(new Asana("Lapsen lepoasento", "Aloita konttausasennosta. Sen jäkeen työnnä lantiota kantapäitä kohti kunnes laskeudut niiden päälle."
+					+ "Kurota kädet pitkälle pään yläpuolelle ja aseta kämmenet mattoa vasten.", jrepository.findByName("Yinjooga").get(0)));
 			
 			log.info("fetch all the joogas");
 			for (Jooga jooga : jrepository.findAll()) {

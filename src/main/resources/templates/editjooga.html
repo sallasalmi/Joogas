@@ -18,6 +18,7 @@
 		<label for="time">Time</label>
 	<input type="text" id="time" th:field="*{time}" class="form-control"/>
 	<div style="clear: both; display: block; height: 10px;"></div>
+	</form>
 	<label for="reviewlist">Review</label>
 		<select id="reviewlist" th:field="*{review}" class="form-control">
        	<option th:each="review: ${reviews}" th:value="${review.reviewid}" th:text="${review.name}"></option>

@@ -1,38 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<link type="text/css"  href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 
 <head>
-	<title>Joogalist</title>
-	<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+	 <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-		<form th:action="@{/logout}" method="post">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand navbar-left"  href="joogalist">Joogabooga</a>
+    	<form class="navbar-form navbar-right" th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>
+   </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  	<h1>Joogabooga</h1>
+ 	 <p>Paljon erilaisia joogia!</p>
+</div>
+
+	<h2>Joogat</h2>
 	
-	<br>
-	<h1>JoogaBooga</h1>
-	<br>
-	<div>
-	<h4>Joogas</h4>
-	<table class="table table-striped">
-		<tbody>
+	<table class="table table-striped table-bordered">
+	<thead>
+	<tr>
+		<th scope="col"></th>
+		<th scope="col">Asanat</th>
+		<th scope="col"></th>
+		<th scope="col">Kuvaus</th>
+		<th scope="col">Kesto</th>
+		<th scope="col">Arvostelu</th>
+		<th scope="col"></th>
+		<th scope="col"></th>
+	</tr>
+	</thead>
+		<tbody class="container">
 			<tr th:each = "jooga : ${joogas}">
-			<td th:text="${jooga.name}"></td>
-			
-			<td><p th:each = "asana : ${jooga.asanas}">
-			<span th:text="${asana.asname}"></span>
-			<span th:text="${asana.adescription}"></span>
-			</p></td>
-			
-			<td th:text="${jooga.description}"></td>
-			<td th:text="${jooga.time}"></td>
-			<td th:text="${jooga.review.name}"></td>
-			<td><a class="btn btn-danger" color=#DD5DB2 th:href="@{/delete/{id}(id=${jooga.id})}"
-							sec:authorize="hasAuthority('ADMIN')">Delete</a></td>
-			<td><a class="btn btn-danger" th:href="@{/edit/{id}(id=${jooga.id})}"
+				<td th:text="${jooga.name}" class="lead"></td>
+				<td><p th:each = "asana : ${jooga.asanas}">
+					<span th:text="${asana.asname}" class="text-uppercase" ></span><br>
+					<span th:text="${asana.adescription}"></span>
+					<span><a class="btn" th:href="@{/deleteasana/{id}(id=${asana.asanaid})}" sec:authorize="hasAuthority('ADMIN')">
+					<span class="glyphicon glyphicon-trash"></span>
+					</a></span>								
+				</p>
+				</td>
+				<td><a href="/newasana" class="btn btn-success"> Add new asana </a></td>
+				<td th:text="${jooga.description}"></td>
+				<td th:text="${jooga.time}"></td>
+				<td th:text="${jooga.review.name}"></td>
+				<td><a class="btn btn-primary" th:href="@{/edit/{id}(id=${jooga.id})}"
 							sec:authorize="hasAuthority('ADMIN')">Edit</a></td>
+				<td><a class="btn btn-info btn-sm" th:href="@{/delete/{id}(id=${jooga.id})}"
+							sec:authorize="hasAuthority('ADMIN')">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>

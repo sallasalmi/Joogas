@@ -50,34 +50,41 @@ public class JoogaController {
 	
 	// Tallentaa uuden joogan
 	@RequestMapping(value = "/savejooga", method = RequestMethod.POST)
-	public String save(Jooga jooga){
+	public String save(Jooga jooga, Asana asana){
 		jrepository.save(jooga);
+		arepository.save(asana);
 		return "redirect:joogalist";
 	}
 //	
-//	// Hakee kaikki tiettyyn joogaan kuuluvat asanat
-//	@RequestMapping("/asanas/{id}")
-//	public String asanas(Model model) { 
-//		model.addAttribute("asanas", arepository.findAll());
-//		model.addAttribute("joogas", jrepository.findAll());
-//		return "asanas";
-//	}
+	// Hakee kaikki tiettyyn joogaan kuuluvat asanat
+	@RequestMapping("/asanas/{id}")
+	public String asanas(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("jooga", jrepository.findById(id));
+		model.addAttribute("asanas", arepository.findAll());
+		return "asanas";
+	}
+//	
+	@RequestMapping(value = "/deleteasana/{id}", method = RequestMethod.GET)
+	public String deleteAsana(@PathVariable("id") Long asanaid, Model model) {
+		arepository.deleteById(asanaid);
+		return "redirect:../joogalist";
+	}
 //	
 //	
+	// Lisää uuden asanan
+	@RequestMapping(value="/newasana")
+	public String addasana( Model model){
+		model.addAttribute("asana", new Asana());
+		model.addAttribute("joogas", jrepository.findAll());
+		return "newasana";
+	}
 //	
-//	// Lisää uuden asanan
-//	@RequestMapping(value="/addasana")
-//	public String addasana(Model model){
-//		model.addAttribute("asana", new Asana());
-//		return "addasana";
-//	}
-//	
-//	// Tallentaa uuden asanan
-//	@PostMapping(value = "/saveasana")
-//	public String saveasana(Asana asana){
-//		arepository.save(asana);
-//		return "redirect:joogalist";
-//	}
+	// Tallentaa uuden asanan
+	@RequestMapping(value = "/saveasana", method = RequestMethod.POST)
+	public String saveasana(Asana asana){
+		arepository.save(asana);
+		return "redirect:joogalist";
+	}
 	
 	// Poistaa joogan
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
@@ -91,6 +98,7 @@ public class JoogaController {
 	public String editJooga(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("jooga", jrepository.findById(id));
 		model.addAttribute("reviews", vrepository.findAll());
+		
 		return "editjooga";
 	}
 	

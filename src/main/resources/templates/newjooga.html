@@ -9,7 +9,7 @@
 <body>
 	<h2>New jooga</h2>
 	<div>
-	<form th:object="${jooga}" th:action="@{save}" action="#" method="post">
+	<form th:object="${jooga}" th:action="@{savejooga}" action="#" method="post">
 		<label for="name">Name</label>
 	<input type="text" id="name" th:field="*{name}" class="form-control"/>
 	<div style="clear: both; display: block; height: 10px;"></div>
